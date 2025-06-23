@@ -1,4 +1,33 @@
+import { User } from "../models/userModel.js";
+import crypto from "crypto";
+import bcrypt from "bcrypt";
+import httpStatus from "http-status";
 
+
+const login = async (req, res) => {
+    const {username, password} = req.body;
+
+    if (!username || !password) {
+        return res.status(400).json({ message: "Please Provide" });
+    }
+
+    try {
+        const user = await User.findOne({username});
+        if (!user) {
+            return res.status(httpStatus.NOT_FOUND).json({ message: "User not found"});
+        }
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (isMatch) {
+            let token = crypto.randomBytes(20).toString('hex');
+            user.token = token;
+
+            await user.save();
+            return res.status(httpStatus.OK).json({token: token});
+        }
+    } catch (e) {
+        return res.status(500).json({ message: `Something went wrong: ${e}`});
+    }
+}; 
 
 
 const register =  async (req, res) => {
@@ -26,3 +55,5 @@ const register =  async (req, res) => {
         res.json({message: `Something went wrong: ${e}`});
     }
 };
+
+export { login, register};

@@ -1,4 +1,5 @@
 import { Schema } from "mongoose";
+import mongoose from "mongoose";
 
 const meetingSchema = new Schema(
     {
@@ -8,6 +9,6 @@ const meetingSchema = new Schema(
     }
 );
 
-const Meeting = mongoose.Model('Meeting', meetingSchema);
+const Meeting = mongoose.model('Meeting', meetingSchema);
 
 export {Meeting};
