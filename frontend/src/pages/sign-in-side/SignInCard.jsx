@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import MuiCard from "@mui/material/Card";
 import Checkbox from "@mui/material/Checkbox";
-import Divider from "@mui/material/Divider";
+
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -12,7 +12,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import ForgotPassword from "./ForgotPassword.jsx";
-import { GoogleIcon, FacebookIcon, SitemarkIcon } from "./CustomIcons.jsx";
+import { SitemarkIcon } from "./CustomIcons.jsx";
 
 const Card = styled(MuiCard)(({ theme }) => ({
 	display: "flex",
@@ -175,25 +175,7 @@ export default function SignInCard() {
 					</span>
 				</Typography>
 			</Box>
-			{/* <Divider>or</Divider>
-			<Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-				<Button
-					fullWidth
-					variant="outlined"
-					onClick={() => alert("Sign in with Google")}
-					startIcon={<GoogleIcon />}
-				>
-					Sign in with Google
-				</Button>
-				<Button
-					fullWidth
-					variant="outlined"
-					onClick={() => alert("Sign in with Facebook")}
-					startIcon={<FacebookIcon />}
-				>
-					Sign in with Facebook
-				</Button>
-			</Box> */}
+			
 		</Card>
 	);
 }
