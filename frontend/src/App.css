@@ -1,7 +1,7 @@
 .landingPageContainer {
   width: 100vw;
   height: 100vh;
-  background-image: url('../public/background.png');
+  background-image: url('/background.png');
   background-size: cover; /* Optional: Makes it fill the screen */
   background-repeat: no-repeat;
   background-position: center;
