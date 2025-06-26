@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import '../App.css'
+import { Link } from 'react-router-dom'
 
 export default function LandingPage() {
   return (
@@ -13,7 +13,7 @@ export default function LandingPage() {
           <p>Join as Guest</p>
           <p>Register</p>
           <div role="button">
-            Login
+            <p>Login</p>
           </div>
         </div>
       </nav>
