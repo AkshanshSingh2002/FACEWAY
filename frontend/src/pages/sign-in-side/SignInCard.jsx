@@ -11,7 +11,7 @@ import FormControl from "@mui/material/FormControl";
 // import FormControlLabel from "@mui/material/FormControlLabel";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 // import ForgotPassword from "./ForgotPassword.jsx";
 import { SitemarkIcon } from "./CustomIcons.jsx";
@@ -62,12 +62,12 @@ export default function SignInCard() {
 				setUsername("");
 				setMessage(result);
 				setOpen(true);
-				setError("")
-				setFormState(0)
-				setPassword("")
+				setError("");
+				setFormState(0);
+				setPassword("");
 			}
 		} catch (err) {
-			console.error(err);
+			console.log(err);
 			let message = err.response.data.message;
 			setError(message);
 		}
@@ -190,8 +190,8 @@ export default function SignInCard() {
 					<FormControl>
 						<FormLabel htmlFor="fullname">Full Name</FormLabel>
 						<TextField
-							error={setError}
-							helperText={setMessage}
+							error={Boolean(error)}
+							helperText={error || ""}
 							id="fullname"
 							type="fullname"
 							name="fullname"
@@ -202,7 +202,7 @@ export default function SignInCard() {
 							required
 							fullWidth
 							variant="outlined"
-							color={setError ? "error" : "primary"}
+							color={error ? "error" : "primary"}
 							onChange={(e) => setName(e.target.value)}
 						/>
 					</FormControl>
@@ -213,8 +213,8 @@ export default function SignInCard() {
 				<FormControl>
 					<FormLabel htmlFor="username">Username</FormLabel>
 					<TextField
-						error={setError}
-						helperText={setMessage}
+						error={Boolean(error)}
+						helperText={error || ""}
 						id="username"
 						type="username"
 						name="username"
@@ -225,13 +225,13 @@ export default function SignInCard() {
 						required
 						fullWidth
 						variant="outlined"
-						color={setError ? "error" : "primary"}
+						color={error ? "error" : "primary"}
 						onChange={(e) => setUsername(e.target.value)}
 					/>
 				</FormControl>
 
 				<FormControl>
-					<Box sx={{ display: "flex", justifyContent: "space-between" }}>
+					{/* <Box sx={{ display: "flex", justifyContent: "space-between" }}>
 						<FormLabel htmlFor="password">Password</FormLabel>
 						{/* <Link
 							component="button"
@@ -241,11 +241,12 @@ export default function SignInCard() {
 							sx={{ alignSelf: "baseline" }}
 						>
 							Forgot your password?
-						</Link> */}
-					</Box>
+						</Link>
+					</Box> */}
+					<FormLabel htmlFor="password">Password</FormLabel>
 					<TextField
-						error={setError}
-						helperText={setMessage}
+						error={Boolean(error)}
+						helperText={error || ""}
 						name="password"
 						placeholder="••••••"
 						type="password"
@@ -256,7 +257,7 @@ export default function SignInCard() {
 						required
 						fullWidth
 						variant="outlined"
-						color={setError ? "error" : "primary"}
+						color={error ? "error" : "primary"}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 				</FormControl>

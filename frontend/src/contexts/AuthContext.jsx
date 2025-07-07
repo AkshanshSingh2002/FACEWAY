@@ -3,7 +3,7 @@ import axios from 'axios';
 import httpStatus from 'http-status';
 import { useNavigate } from 'react-router-dom';
 import { createContext } from 'react';
-// import { useContext } from 'react';
+import { useContext } from 'react';
 
 
 export const AuthContext = createContext({});
@@ -13,9 +13,9 @@ const client = axios.create({
 });
 
 export const AuthProvider = ({ children }) => {
-    // const authContext = useContext(AuthContext);
+    const authContext = useContext(AuthContext);
 
-    const [userData, setUserData] = React.useState();
+    const [userData, setUserData] = React.useState(authContext);
 
     const router = useNavigate();
 
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
 
     const handleLogin = async (username, password) => {
         try {
-            let request = await client.post("/register", {
+            let request = await client.post("/login", {
                 username: username,
                 password: password
             });
