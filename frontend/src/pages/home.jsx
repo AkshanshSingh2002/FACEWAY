@@ -4,13 +4,16 @@ import { useNavigate } from "react-router-dom";
 import styles from "../styles/Home.module.css";
 import { Button, IconButton, TextField } from "@mui/material";
 import Restore from "@mui/icons-material/Restore";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
 function HomeComponent() {
+	let navigate = useNavigate();
 	const [meetingCode, setMeetingCode] = useState("");
 
-	let navigate = useNavigate();
-
+	const { addToUserHistory } = useContext(AuthContext);
 	let handleJoinVideoCall = async () => {
+		await addToUserHistory(meetingCode);
 		navigate(`/${meetingCode}`);
 	};
 
@@ -22,7 +25,11 @@ function HomeComponent() {
 				</div>
 
 				<div className={styles.buttonContainer}>
-					<IconButton>
+					<IconButton
+						onClick={() => {
+							navigate("/history");
+						}}
+					>
 						<Restore />
 					</IconButton>
 					<p>History</p>
@@ -46,7 +53,7 @@ function HomeComponent() {
 							label="Meeting Code"
 							variant="outlined"
 							value={meetingCode}
-							onChange={(e) => setMeetingCode(e.target.value)}	
+							onChange={(e) => setMeetingCode(e.target.value)}
 						/>
 						<Button variant="contained" onClick={handleJoinVideoCall}>
 							Join

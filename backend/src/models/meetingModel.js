@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 
 const meetingSchema = new Schema(
     {
-        user_id: { type: String, required: true},
-        meetingCode: { type: String, required: true, unique: true},
-        data: {type: Date, default: Date.now}
+        user_id: { type: String },
+        meetingCode: { type: String, required: true},
+        data: {type: Date, default: Date.now,  required: true}
     }
 );
 
